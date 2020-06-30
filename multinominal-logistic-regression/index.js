@@ -27,14 +27,8 @@ const { features, labels, testFeatures, testLabels } = loadCSV('../data/cars.csv
 const regression = new MultinomialLogisticRegression(features, _.flatMap(labels), {
   learningRate: 0.5,
   iterations: 100,
-  batchSize: 50,
-  decisionBoundary: 0.5
+  batchSize: 10
 });
 
 regression.train();
-const prediction = regression.predict([
-  [215, 440, 2.16],
-  [150, 200, 2.223]
-]);
-
-prediction.print();
+console.log(regression.test(testFeatures, _.flatMap(testLabels)));
